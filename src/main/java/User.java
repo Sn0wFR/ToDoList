@@ -1,5 +1,6 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.regex.Pattern;
 
@@ -7,20 +8,22 @@ public class User {
     public String mail;
     public String firstName;
     public String lastName;
-    public Date birthday;
+    public LocalDate birthday;
     public ToDoList tdlist;
 
     public User(
             String mail,
             String firstName,
             String lastName,
-            String birthday
-    ) throws ParseException {
-        this.mail = mail;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthday = new SimpleDateFormat("yyyy-MM-dd").parse(birthday);
-        this.tdlist = null;
+            int year,
+            int month,
+            int day
+    ) {
+            this.mail = mail;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.birthday = LocalDate.of(year,month, day);
+            this.tdlist = null;
     }
 
     public void setTdlist(ToDoList tdlist) {
@@ -50,11 +53,11 @@ public class User {
         return false;
     }
 
-    public boolean checkDate(Date d) {
+    public boolean checkDate() {
 
-        Date todayDate = new Date();
+        LocalDate todayDate = LocalDate.now();
 
-        int res = todayDate.getYear() - d.getYear();
+        int res = todayDate.minusYears((long) this.birthday.getYear()).getYear();
 
         return res >= 13;
     }
