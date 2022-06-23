@@ -1,11 +1,12 @@
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Item {
     private String name;
     private String content;
-    private Date createDate;
+    private LocalDate createDate;
 
-    public Item(String e, String name, String content, Date createDate) {
+    public Item( String name, String content, LocalDate createDate) {
         this.content = content;
         this.name = name;
         this.createDate = createDate;
@@ -19,7 +20,7 @@ public class Item {
         this.content=content;
     }
 
-    public void setDate(Date createDate){
+    public void setDate(LocalDate createDate){
         this.createDate=createDate;
     }
 
@@ -31,7 +32,7 @@ public class Item {
         return this.content;
     }
 
-    public Date getCreateDate(){
+    public LocalDate getCreateDate(){
         return this.createDate;
     }
 
