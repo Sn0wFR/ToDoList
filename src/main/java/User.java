@@ -19,6 +19,16 @@ public class User {
             int month,
             int day
     ) {
+
+        if (year <= 0 ) {
+            throw new IllegalArgumentException("the year must be upper than 0");
+        }
+        if (month <= 0) {
+            throw new IllegalArgumentException("the month must be upper than 0");
+        }
+        if (day <= 0) {
+            throw new IllegalArgumentException("the day must be upper than 0");
+        }
             this.mail = mail;
             this.firstName = firstName;
             this.lastName = lastName;
@@ -47,6 +57,13 @@ public class User {
         }
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." +"[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         Pattern pattern = Pattern.compile(emailRegex);
+
+        if (this.mail.length() < 8)
+            return false;
+
+        if (this.mail.length() > 40)
+            return false;
+
         if (pattern.matcher(this.mail).matches()) {
             return true;
         }
