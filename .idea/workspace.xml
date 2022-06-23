@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="de28769c-17a3-48e7-9640-ff867d9566e4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/ToDoList.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ToDoList.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/UserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ToDoList.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ToDoList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/User.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +103,7 @@
       <updated>1655886873291</updated>
       <workItem from="1655886901033" duration="1291000" />
       <workItem from="1655892335134" duration="1952000" />
-      <workItem from="1655976882527" duration="217000" />
+      <workItem from="1655976882527" duration="763000" />
     </task>
     <servers />
   </component>

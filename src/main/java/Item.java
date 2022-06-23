@@ -39,7 +39,7 @@ public class Item {
 
         int length = this.content.length();
 
-        if (lengt > 1000) {
+        if (length > 1000) {
             return false;
         }
         return true;
