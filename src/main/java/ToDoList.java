@@ -1,32 +1,46 @@
-import java.time.Instant;
-import java.time.LocalTime;
-import java.time.ZoneOffset;
+import javax.naming.TimeLimitExceededException;
+import java.time.*;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class ToDoList {
 
-    private ArrayList<Item> items;
+    private final ArrayList<Item> items;
 
     public ToDoList() {
         this.items = new ArrayList<Item>();
     }
 
-    public boolean add(Item item) {
+    public boolean add(Item item) throws TimeLimitExceededException, ArrayStoreException, IllegalArgumentException {
 
-        if(this.items.size() == 10){
-            return false;
+        if (item == null){
+            throw new IllegalArgumentException("item not set");
         }
 
-        Instant instant = Instant.from(this.items.get(this.items.size() - 1).getCreateDate());
-        Instant now = Instant.now();
+        if (this.items.size() == 10) {
+            throw new ArrayStoreException("list is full");
+        }
 
-        if((instant.toEpochMilli() - now.toEpochMilli()) < (30 * 60000)){
-            return false;
+        if (this.items.size() != 0) {
+
+            Date itemDate = Date.from(this.items.get(this.items.size() - 1).getCreateDate().atZone(ZoneId.systemDefault()).toInstant());
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(itemDate);
+
+            Date current = Date.from(item.getCreateDate().atZone(ZoneId.systemDefault()).toInstant());
+
+            long calc = current.getTime() - itemDate.getTime();
+
+            if (calc < 1800000) {
+
+                throw new TimeLimitExceededException("You have to wait 30 minutes between two items");
+            }
         }
 
         for (Item i : this.items) {
-            if(i.getName().equals(item.getName())){
-                return false;
+            if (i.getName().equals(item.getName())) {
+                throw new IllegalArgumentException("item already exists");
             }
         }
 
@@ -35,16 +49,22 @@ public class ToDoList {
         return true;
     }
 
-    public void delete(int index){
+    public boolean delete(int index){
+        if (index < 0 || index >= this.items.size()) {
+            throw new IllegalArgumentException("index out of bounds");
+        }
+
         this.items.remove(index);
+        return true;
     }
 
     public Item get(int index){
-        return this.items.get(index);
-    }
 
-    public ArrayList<Item> getList(){
-        return this.items;
+        if (index < 0 || index >= this.items.size()) {
+            throw new IllegalArgumentException("index out of bounds");
+        }
+
+        return this.items.get(index);
     }
 
 }

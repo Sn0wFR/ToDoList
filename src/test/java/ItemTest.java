@@ -1,70 +1,87 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
+import javax.naming.SizeLimitExceededException;
+import java.time.LocalDateTime;
 
 
 
 
 public class ItemTest {
 
-
     @Test
-    public void InstanceItemChecking(){
-        LocalDate localDate = LocalDate.now();
-        Item item=new Item("Quiche lorraine","Des oeufs, une pâte brisée, de la crème, du fromage et des lardons",localDate);
-        Assertions.assertTrue(item!=null);
+    public void InstanceItemChecking() throws SizeLimitExceededException {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        Item item = new Item("Quiche lorraine","Des oeufs, une pâte brisée, de la crème, du fromage et des lardons", localDateTime);
+        Assertions.assertNotNull(item);
 
     }
-    @Test
-    public void NotcreateItemChecking(){
-        LocalDate localDate = LocalDate.now();
-        Item firstItem = new Item("Clafoutis aux cerises", "", localDate);
-        Assertions.assertTrue(firstItem.getContent().length()==0||firstItem.getName().length()==0||localDate==null);
-    }
-    @Test
-    public void sizeContentValidChecking() {
-        LocalDate localDate = LocalDate.now();
-        Item firstItem = new Item("Poule au pot", "Version ancienne", localDate);
-        Assertions.assertTrue(firstItem.getContent().length()<=10000);
 
-    }
     @Test
-    public void sizeContentNotVlidChecking() {
-        LocalDate localDate = LocalDate.now();
-        Item firstItem = new Item("Hachis parmentier", "Version traditionnelle", localDate);
-        Assertions.assertFalse(firstItem.getContent().length()>1000);
-
-    }
-    @Test
-    public void notNullContentChecking() {
-        LocalDate localDate = LocalDate.now();
-        Item i = new Item("Filet mignon en croûte", "Version classique", localDate);
-        Assertions.assertTrue(i.getContent().length()>0);
-    }
-    @Test
-    public void nameContentChecking() {
-        LocalDate localDate = LocalDate.now();
-        Item i = new Item("Gigot d'agneau à l'ail et au romarin", "epices-gigot", localDate);
-        Assertions.assertTrue(i.getName().length()>0);
-
-    }
-    @Test
-    public void nameNullContentChecking() {
-        LocalDate localDate = LocalDate.now();
-        Item i = new Item("", "epices-gigot", localDate);
-        Assertions.assertFalse(i.getName().length()>0);
-
-    }
-    @Test
-    public void NullContentChecking() {
-        LocalDate localDate = LocalDate.now();
-        Item i = new Item("Pot au feu de boeuf ", "", localDate);
-        Assertions.assertFalse(i.getContent().length()>0);
+    public void checkNameIsNull() {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new Item(null, "Des oeufs, une pâte brisée, de la crème, du fromage et des lardons", localDateTime));
     }
 
+    @Test
+    public void checkContentIsNull() {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new Item("Quiche lorraine", null, localDateTime));
+    }
 
+    @Test
+    public void checkContentIsTooLong() {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        Assertions.assertThrows(SizeLimitExceededException.class, () -> new Item("Quiche lorraine", "a".repeat(1001), localDateTime));
+    }
 
+    @Test
+    public void checkDateIsNull() {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new Item("Quiche lorraine", "Des oeufs, une pâte brisée, de la crème, du fromage et des lardons", null));
+    }
+
+    @Test
+    public void checkSetNameOk() throws SizeLimitExceededException {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        Item item = new Item("Quiche lorraine","Des oeufs, une pâte brisée, de la crème, du fromage et des lardons", localDateTime);
+        Assertions.assertTrue(item.setName("Quiche lorraine V12 bi-turbo tdci"));
+    }
+
+    @Test
+    public void checkSetNameIsNull() throws SizeLimitExceededException {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        Item item = new Item("Quiche lorraine","Des oeufs, une pâte brisée, de la crème, du fromage et des lardons", localDateTime);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> item.setName(null));
+    }
+
+    @Test
+    public void checkSetContentOk() throws SizeLimitExceededException {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        Item item = new Item("Quiche lorraine","Des oeufs, une pâte brisée, de la crème, du fromage et des lardons", localDateTime);
+        Assertions.assertTrue(item.setContent("https://www.youtube.com/watch?v=dQw4w9WgXcQ"));
+    }
+
+    @Test
+    public void checkSetContentIsNull() throws SizeLimitExceededException {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        Item item = new Item("Quiche lorraine","Des oeufs, une pâte brisée, de la crème, du fromage et des lardons", localDateTime);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> item.setContent(null));
+    }
+
+    @Test
+    public void checkSetDateOk() throws SizeLimitExceededException {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        Item item = new Item("Quiche lorraine","Des oeufs, une pâte brisée, de la crème, du fromage et des lardons", localDateTime);
+        Assertions.assertTrue(item.setDate(LocalDateTime.now()));
+    }
+
+    @Test
+    public void checkSetDateIsNull() throws SizeLimitExceededException {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        Item item = new Item("Quiche lorraine","Des oeufs, une pâte brisée, de la crème, du fromage et des lardons", localDateTime);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> item.setDate(null));
+    }
 
 
 }
