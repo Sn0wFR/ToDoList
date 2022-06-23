@@ -14,7 +14,9 @@ public class UserTest {
                     "superpapate@frite.fr",
                     "remy",
                     "hamed",
-                    Calendar;
+                    2001,
+                    1,
+                    1
         );
         assertTrue(u.checkEmail());
     }
@@ -55,7 +57,7 @@ public class UserTest {
                 1,
                 1
         );
-        assertTrue(u.checkDate(u.birthday));
+        assertTrue(u.checkDate());
     }
 
 
