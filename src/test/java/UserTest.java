@@ -11,15 +11,17 @@ public class UserTest {
     @Test
     public void valideEmail() {
         User u = new User(
-                    "superpapate@frite.fr",
-                    "remy",
-                    "hamed",
-                    2001,
-                    1,
-                    1
+                "superpapate@frite.fr",
+                "remy",
+                "hamed",
+                2001,
+                1,
+                1
         );
-        assertTrue(u.checkEmail());
+        String address = "superpapate@frite.fr";
+        assertEquals(address, u.mail);
     }
+
 
     @Test
     public void valideFirstName() {
@@ -62,28 +64,38 @@ public class UserTest {
 
     @Test
     public void badMail() {
-        User u = new User(
-                "waïkiki",
-                "remy",
-                "hamed",
-                2001,
-                1,
-                1
-        );
-        assertTrue(u.checkDate());
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            User u = new User(
+                    "waïkiki",
+                    "remy",
+                    "hamed",
+                    2001,
+                    1,
+                    1
+            );
+        });
+        String expectedMessage = "bad mail";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 
     @Test
     public void noFirstName() {
-        User u = new User(
-                "waïkiki",
-                "",
-                "hamed",
-                2001,
-                1,
-                1
-        );
-        assertFalse(u.checkfNameOrLastName(u.firstName));
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            User u = new User(
+                    "waikiki@hotmail.fr",
+                    "",
+                    "hamed",
+                    2001,
+                    1,
+                    1
+            );
+        });
+        String expectedMessage = "error: bad first name";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+
     }
 
     @Test
@@ -99,7 +111,7 @@ public class UserTest {
                     25
             );
         });
-        String expectedMessage = "the year must be upper than 0";
+        String expectedMessage = "bad date";
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }
@@ -109,7 +121,7 @@ public class UserTest {
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             User u = new User(
-                    "waïkiki",
+                    "waikiki@hotmail.fr",
                     "",
                     "hamed",
                     1990,
@@ -117,25 +129,25 @@ public class UserTest {
                     25
             );
         });
-        String expectedMessage = "the month must be upper than 0";
+        String expectedMessage = "error: bad date";
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }
 
     @Test
-    public void badDay() {
+    public void babySubscribe() {
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             User u = new User(
-                    "waïkiki",
-                    "",
+                    "waikiki@hotmail.fr",
+                    "toto",
                     "hamed",
-                    1990,
+                    2019,
                     12,
-                    0
+                    1
             );
         });
-        String expectedMessage = "the day must be upper than 0";
+        String expectedMessage = "too young";
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }
