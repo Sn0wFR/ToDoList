@@ -101,4 +101,7 @@ public class User {
         return res >= 13;
     }
 
+    public boolean sendMail() {
+        return false;
+    }
 }

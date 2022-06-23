@@ -44,6 +44,10 @@ public class ToDoList {
             }
         }
 
+        if(this.items.size() == 8) {
+
+        }
+
         this.items.add(item);
 
         return true;
@@ -58,7 +62,7 @@ public class ToDoList {
         return true;
     }
 
-    public Item get(int index){
+    public Item get(int index) {
 
         if (index < 0 || index >= this.items.size()) {
             throw new IllegalArgumentException("index out of bounds");
@@ -66,5 +70,4 @@ public class ToDoList {
 
         return this.items.get(index);
     }
-
 }

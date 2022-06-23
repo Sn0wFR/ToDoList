@@ -1,12 +1,29 @@
-import org.junit.jupiter.api.Test;
+//import org.junit.Before;
+import org.junit.Test;
+//import org.junit.runner.RunWith;
+//import org.mockito.Mockito;
+//import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.Calendar;
-import java.util.Date;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import static org.junit.Assert.*;
 
+ // Nous avons essayé d'utiliser Mockito mais impossible car "java: package org.mockito does not exist" alors qu'il est présent dans les imports et dans le pom.xml
+ // Nous avons commenté tous les import et le code effectué pour faire un Mock, tous les test sans mock fonctionnent
+
+//@RunWith(MockitoJUnitRunner.class)
 public class UserTest {
 
+    private User customUser;
+
+    /*
+    @Before
+    public void setUp() {
+
+        customUser = Mockito.mock(User.class);
+
+    }*/
 
     @Test
     public void valideEmail() {
@@ -152,5 +169,10 @@ public class UserTest {
         assertTrue(actualMessage.contains(expectedMessage));
     }
 
-
+    /*
+    @Test
+    public void checkSendMailOk() {
+        Mockito.when(this.customUser.sendMail()).thenReturn(true);
+        assertTrue(this.customUser.sendMail());
+    }*/
 }
