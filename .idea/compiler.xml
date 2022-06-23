@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="ToDoList" target="18" />
+      <module name="ToDoList" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>
