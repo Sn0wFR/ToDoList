@@ -7,9 +7,11 @@ import java.util.Date;
 public class ToDoList {
 
     private final ArrayList<Item> items;
+    private final int foo;
 
     public ToDoList() {
         this.items = new ArrayList<Item>();
+        this.foo = 0;
     }
 
     public boolean add(Item item) throws TimeLimitExceededException, ArrayStoreException, IllegalArgumentException {
